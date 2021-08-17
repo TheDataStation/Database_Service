@@ -23,9 +23,6 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
 
     def CreateUser(self, request, context):
         db_user = user.create_user(self.db, request)
-        # sourceFile = open('demo.txt', 'a')
-        # print(db_user, file=sourceFile)
-        # sourceFile.close()
         if db_user:
             return db_user
 
