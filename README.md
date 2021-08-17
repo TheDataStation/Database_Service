@@ -1,8 +1,8 @@
 # Database_Service
 
-Database Operation Microservice using grpc
+Database Operation Microservice using [grpc](https://grpc.io/)
 
-Decouple database services from individul components. Database operations are finished through rpc call to this repo.
+Decouple database services from individul components. Database operations are achieved through rpc calls to this repo.
 
 ## Usage
 ```python3
