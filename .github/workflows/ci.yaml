@@ -1,4 +1,4 @@
-name: CI_database_service
+name: CI_user_register
 
 on: push
 
@@ -18,7 +18,14 @@ jobs:
         pip install -r requirements.txt
     - name: test server startup
       run: |
-        # python3 DatabaseServer.py
-        # no way to test if it started up ok or not
-        true
+        uvicorn main:app &
+
+        # now wait for this to become responsive to connections for 30 seconds
+        wget http://127.0.0.1:8000/ --retry-connrefused --tries 30 --waitretry=1
+
+        # TODO: run some basic tests against the server here
+
+        # now we're finished with the server
+        killall --wait uvicorn
+
 
