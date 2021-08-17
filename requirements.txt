@@ -1,0 +1,8 @@
+greenlet==1.1.1
+grpcio==1.39.0
+grpcio-tools==1.39.0
+protobuf==3.17.3
+pydantic==1.8.2
+six==1.16.0
+SQLAlchemy==1.4.22
+typing-extensions==3.10.0.0
