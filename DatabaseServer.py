@@ -1,10 +1,10 @@
 import database_pb2_grpc
 from database import SessionLocal, engine, Base
-from sqlalchemy.orm import Session
-from crud import dataset, user
+from crud import user_repo
 import grpc
 from concurrent import futures
 import logging
+import database_pb2
 
 Base.metadata.create_all(engine)
 
@@ -22,9 +22,25 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
         self.db = next(get_db())
 
     def CreateUser(self, request, context):
-        db_user = user.create_user(self.db, request)
-        if db_user:
-            return db_user
+        user = user_repo.create_user(self.db, request)
+        if user:
+            return database_pb2.UserResponse(status=1, msg="success", data=[user])
+        else:
+            return database_pb2.UserResponse(status=-1, msg="internal database error", data=[])
+
+    def GetUser(self, request, context):
+        user = user_repo.get_user(self.db, request.id)
+        if user:
+            return database_pb2.UserResponse(status=1, msg="success", data=[user])
+        else:
+            return database_pb2.UserResponse(status=-1, msg="user does not exist", data=[])
+
+    def GetUserByEmail(self, request, context):
+        user = user_repo.get_user_by_email(self.db, request.email)
+        if user:
+            return database_pb2.UserResponse(status=1, msg="success", data=[user])
+        else:
+            return database_pb2.UserResponse(status=-1, msg="user does not exist", data=[])
 
 
 def serve():

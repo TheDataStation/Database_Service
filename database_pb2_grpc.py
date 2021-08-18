@@ -17,7 +17,17 @@ class DatabaseStub(object):
         self.CreateUser = channel.unary_unary(
                 '/Database/CreateUser',
                 request_serializer=database__pb2.UserRegister.SerializeToString,
-                response_deserializer=database__pb2.User.FromString,
+                response_deserializer=database__pb2.UserResponse.FromString,
+                )
+        self.GetUser = channel.unary_unary(
+                '/Database/GetUser',
+                request_serializer=database__pb2.User.SerializeToString,
+                response_deserializer=database__pb2.UserResponse.FromString,
+                )
+        self.GetUserByEmail = channel.unary_unary(
+                '/Database/GetUserByEmail',
+                request_serializer=database__pb2.User.SerializeToString,
+                response_deserializer=database__pb2.UserResponse.FromString,
                 )
 
 
@@ -30,13 +40,35 @@ class DatabaseServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetUser(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetUserByEmail(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DatabaseServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'CreateUser': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateUser,
                     request_deserializer=database__pb2.UserRegister.FromString,
-                    response_serializer=database__pb2.User.SerializeToString,
+                    response_serializer=database__pb2.UserResponse.SerializeToString,
+            ),
+            'GetUser': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetUser,
+                    request_deserializer=database__pb2.User.FromString,
+                    response_serializer=database__pb2.UserResponse.SerializeToString,
+            ),
+            'GetUserByEmail': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetUserByEmail,
+                    request_deserializer=database__pb2.User.FromString,
+                    response_serializer=database__pb2.UserResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -61,6 +93,40 @@ class Database(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Database/CreateUser',
             database__pb2.UserRegister.SerializeToString,
-            database__pb2.User.FromString,
+            database__pb2.UserResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetUser(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Database/GetUser',
+            database__pb2.User.SerializeToString,
+            database__pb2.UserResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetUserByEmail(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Database/GetUserByEmail',
+            database__pb2.User.SerializeToString,
+            database__pb2.UserResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
