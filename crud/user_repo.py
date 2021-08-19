@@ -7,15 +7,31 @@ from schemas.user import UserRegister
 
 
 def get_user(db: Session, user_id: int):
-    return db.query(User).filter(User.id == user_id).first().to_pb_user()
+    user = db.query(User).filter(User.id == user_id).first()
+    if user:
+        return user.to_pb_user()
+    return None
 
 
 def get_user_by_email(db: Session, email: str):
-    return db.query(User).filter(User.email == email).first().to_pb_user()
+    user = db.query(User).filter(User.email == email).first()
+    if user:
+        return user.to_pb_user()
+    else:
+        return None
+
+
+def get_user_by_user_name(db: Session, user_name: str):
+    user = db.query(User).filter(User.user_name == user_name).first()
+    if user:
+        return user.to_pb_user()
+    else:
+        return None
 
 
 def get_users(db: Session, limit: int = 100):
-    return db.query(User).limit(limit).all()
+    users = db.query(User).limit(limit).all()
+    return [user.to_pb_user() for user in users]
 
 
 def create_user(db: Session, user: UserRegister):
