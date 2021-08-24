@@ -1,0 +1,24 @@
+name: CI_database_service
+
+on: push
+
+jobs:
+  basic-test:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 20
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - name: install requirements.txt
+      run: |
+        pip install -r requirements.txt
+    - name: test server startup
+      run: |
+        # python3 DatabaseServer.py
+        # no way to test if it started up ok or not
+        true
+
