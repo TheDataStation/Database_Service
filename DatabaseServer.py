@@ -1,6 +1,6 @@
 import database_pb2_grpc
 from database import SessionLocal, engine, Base
-from crud import user_repo
+from crud import user_repo, dataset_repo
 import grpc
 from concurrent import futures
 import logging
@@ -55,6 +55,20 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
             return database_pb2.UserResponse(status=1, msg="success", data=[user])
         else:
             return database_pb2.UserResponse(status=-1, msg="user does not exist", data=[])
+
+    def CreateDataset(self, request, context):
+        dataset = dataset_repo.create_dataset(self.db, request)
+        if dataset:
+            return database_pb2.DatasetResp(status=1, msg="success", data=[dataset])
+        else:
+            return database_pb2.DatasetResp(status=-1, msg="fail", data=[])
+
+    def GetDatasetByName(self, request, context):
+        dataset = dataset_repo.get_dataset_by_name(self.db, request.name)
+        if dataset:
+            return database_pb2.DatasetResp(status=1, msg="success", data=[dataset])
+        else:
+            return database_pb2.DatasetResp(status=-1, msg="fail", data=[])
 
 
 def serve():

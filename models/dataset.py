@@ -1,6 +1,7 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.orm import relationship
 
+import database_pb2
 from database import Base
 
 
@@ -18,3 +19,7 @@ class Dataset(Base):
 
     owner_id = Column(Integer, ForeignKey("users.id"))
     owner = relationship("User", back_populates="datasets")
+
+    def to_pb_dataset(self):
+        return database_pb2.Dataset(id=self.id, name=self.name, description=self.description,
+                                    upload=self.upload, url=self.url, owner_id=self.owner_id)

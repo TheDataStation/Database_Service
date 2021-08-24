@@ -19,6 +19,6 @@ class DatasetCreate(BaseModel):
     id: int
     owner_id: int  # pk user.id
     name: str
-    desc: str
+    description: str
     upload: bool
     url: str
