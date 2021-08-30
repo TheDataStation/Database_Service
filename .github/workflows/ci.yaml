@@ -22,3 +22,12 @@ jobs:
         # no way to test if it started up ok or not
         true
 
+
+  integration-test:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 20
+    steps:
+      - uses: TheDataStation/integration/.github/actions/integ-user-register@master
+        with:
+          database_service_commit: ${{ github.ref }}
+
