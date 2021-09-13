@@ -29,5 +29,6 @@ jobs:
     steps:
       - uses: TheDataStation/integration/.github/actions/integ-user-register@master
         with:
+          database_service_repository: ${{ github.repository }}
           database_service_commit: ${{ github.ref }}
 
