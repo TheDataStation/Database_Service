@@ -17,6 +17,11 @@ class Dataset(Base):
     created_at = Column(DateTime)
     updated_at = Column(DateTime)
 
+    # Newly added attributes (to keep track of some derived data info)
+    derived = Column(Boolean)  # True -> is a derived data product
+    derived_type = Column(String)  # Currently, it will have one value "metadata", to support CatalogReader
+    origin_data_id = Column(Integer)  # Id of the original dataset
+
     owner_id = Column(Integer, ForeignKey("users.id"))
     owner = relationship("User", back_populates="datasets")
 

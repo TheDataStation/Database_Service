@@ -36,6 +36,9 @@ message Dataset {
   bool upload = 4;
   string url = 5;
   int32 owner_id = 6;
+  bool derived = 7;
+  string derived_type = 8;
+  int32 origin_data_id = 9;
 }
 
 message DatasetResp {
