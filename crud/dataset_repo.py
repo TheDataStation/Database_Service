@@ -28,8 +28,15 @@ def get_dataset_by_name(db: Session, name: str):
 
 
 def create_dataset(db: Session, dataset: DatasetCreate):
-    db_dataset = Dataset(id=dataset.id, owner_id=dataset.owner_id, name=dataset.name, url=dataset.url,
-                         description=dataset.description, upload=dataset.upload)
+    db_dataset = Dataset(id=dataset.id,
+                         owner_id=dataset.owner_id,
+                         name=dataset.name,
+                         url=dataset.url,
+                         description=dataset.description,
+                         upload=dataset.upload,
+                         derived=dataset.derived,
+                         derived_type=dataset.derived_type,
+                         origin_data_id=dataset.origin_data_id)
 
     try:
         db.add(db_dataset)

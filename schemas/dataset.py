@@ -10,6 +10,9 @@ class Dataset(BaseModel):
     url: str
     created_time: str
     updated_time: str
+    derived: bool
+    derived_type: str
+    origin_data_id: int
 
     class Config:
         orm_mode = True
@@ -22,3 +25,6 @@ class DatasetCreate(BaseModel):
     description: str
     upload: bool
     url: str
+    derived: bool
+    derived_type: str
+    origin_data_id: int
