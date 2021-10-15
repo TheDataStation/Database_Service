@@ -26,5 +26,13 @@ class Dataset(Base):
     owner = relationship("User", back_populates="datasets")
 
     def to_pb_dataset(self):
-        return database_pb2.Dataset(id=self.id, name=self.name, description=self.description,
-                                    upload=self.upload, url=self.url, owner_id=self.owner_id)
+        return database_pb2.Dataset(id=self.id,
+                                    name=self.name,
+                                    description=self.description,
+                                    upload=self.upload,
+                                    url=self.url,
+                                    owner_id=self.owner_id,
+                                    derived=self.derived,
+                                    derived_type=self.derived_type,
+                                    origin_data_id=self.origin_data_id
+                                    )

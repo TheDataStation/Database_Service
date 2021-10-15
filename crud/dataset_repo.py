@@ -27,7 +27,7 @@ def get_dataset_by_name(db: Session, name: str):
         return None
 
 
-def create_dataset(db: Session, dataset: DatasetCreate):
+def create_dadataset(db: Session, dataset: DatasetCreate):
     db_dataset = Dataset(id=dataset.id,
                          owner_id=dataset.owner_id,
                          name=dataset.name,
