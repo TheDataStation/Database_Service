@@ -47,3 +47,8 @@ def create_dataset(db: Session, dataset: DatasetCreate):
         return None
     return db_dataset.to_pb_dataset()
 
+
+# The following function returns all dataset ID whose derived_type == metadata
+def get_all_metadata_ID(db: Session):
+    return 0
+
