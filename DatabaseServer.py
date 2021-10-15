@@ -70,6 +70,13 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
         else:
             return database_pb2.DatasetResp(status=-1, msg="fail", data=[])
 
+    def GetDatasetById(self, request, context):
+        dataset = dataset_repo.get_dataset_by_id(self.db, request.id)
+        if dataset:
+            return database_pb2.DatasetResp(status=1, msg="success", data=[dataset])
+        else:
+            return database_pb2.DatasetResp(status=-1, msg="fail", data=[])
+
     def GetAllMetadataID(self, request, context):
         metadataID = dataset_repo.get_all_metadata_ID(self.db)
         if metadataID:

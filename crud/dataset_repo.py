@@ -11,7 +11,7 @@ def get_datasets(db: Session, limit: int = 100):
     return db.query(Dataset).limit(limit).all()
 
 
-def get_dataset(db: Session, dataset_id: int):
+def get_dataset_by_id(db: Session, dataset_id: int):
     dataset = db.query(Dataset).filter(Dataset.id == dataset_id).first()
     if dataset:
         return dataset.to_pb_dataset()
