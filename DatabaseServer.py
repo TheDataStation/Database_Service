@@ -78,11 +78,12 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
             return database_pb2.DatasetResp(status=-1, msg="fail", data=[])
 
     def GetAllMetadataID(self, request, context):
-        metadataID = dataset_repo.get_all_metadata_ID(self.db)
-        if metadataID:
-            return database_pb2.MetadataResponse(status=0, message="success", metadataID=[metadataID])
-        else:
-            return database_pb2.MetadataResponse(status=1, message="fail", metadataID=[])
+        metadata_ID_array = dataset_repo.get_all_metadata_ID(self.db)
+        # if metadataID:
+        #     return database_pb2.MetadataResponse(status=0, message="success", metadataID=[metadataID])
+        # else:
+        # return database_pb2.MetadataResponse(status=1, message="fail", metadataID=[])
+        return database_pb2.MetadataResponse(status=0, message="success", metadataID=metadata_ID_array)
 
 
 def serve():

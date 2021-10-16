@@ -50,5 +50,10 @@ def create_dataset(db: Session, dataset: DatasetCreate):
 
 # The following function returns all dataset ID whose derived_type == metadata
 def get_all_metadata_ID(db: Session):
-    return 0
+    dataset = db.query(Dataset).filter(Dataset.derived_type == "metadata")
+    metadata_ID_array = []
+    for data in dataset:
+        metadata_ID_array.append(data.id)
+    return metadata_ID_array
+
 
