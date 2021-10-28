@@ -85,6 +85,13 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
         # return database_pb2.MetadataResponse(status=1, message="fail", metadataID=[])
         return database_pb2.MetadataResponse(status=0, message="success", metadataID=metadata_ID_array)
 
+    def GetDatasetOwner(self, request, context):
+        user = dataset_repo.get_dataset_owner(self.db, request.id)
+        if user:
+            return database_pb2.UserResponse(status=1, msg="success", data=[user])
+        else:
+            return database_pb2.UserResponse(status=-1, msg="error checking dataset owner", data=[])
+
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))

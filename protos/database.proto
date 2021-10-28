@@ -11,6 +11,7 @@ service Database {
   rpc GetDatasetByName(Dataset) returns (DatasetResp) {}
   rpc GetDatasetById(Dataset) returns (DatasetResp) {}
   rpc GetAllMetadataID(DatabaseEmpty) returns (MetadataResponse) {}
+  rpc GetDatasetOwner(Dataset) returns (UserResponse) {}
 }
 
 message User {

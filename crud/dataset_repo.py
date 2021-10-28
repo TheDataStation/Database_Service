@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 
 from models.dataset import Dataset
+from models.user import User
 
 from schemas.dataset import DatasetCreate
 
@@ -55,5 +56,16 @@ def get_all_metadata_ID(db: Session):
     for data in dataset:
         metadata_ID_array.append(data.id)
     return metadata_ID_array
+
+
+# The following function returns the owner, given a dataset ID.
+def get_dataset_owner(db: Session, dataset_id: int):
+    dataset = db.query(Dataset).filter(Dataset.id == dataset_id).first()
+    if dataset:
+        user = db.query(User).filter(User.id == dataset.owner_id).first()
+        if user:
+            return user.to_pb_user()
+    return None
+
 
 
