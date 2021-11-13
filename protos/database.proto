@@ -42,6 +42,7 @@ message Dataset {
   bool derived = 7;
   string derived_type = 8;
   int32 origin_data_id = 9;
+  bytes signature = 10;
 }
 
 message DatasetResp {
