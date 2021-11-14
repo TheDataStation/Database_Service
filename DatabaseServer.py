@@ -5,6 +5,8 @@ import grpc
 from concurrent import futures
 import logging
 import database_pb2
+from cryptography.hazmat.primitives import hashes, serialization
+from cryptography.hazmat.primitives.asymmetric import rsa, padding
 
 Base.metadata.create_all(engine)
 
@@ -57,6 +59,31 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
             return database_pb2.UserResponse(status=-1, msg="user does not exist", data=[])
 
     def CreateDataset(self, request, context):
+
+        # Before we create dataset, verify request.signature first (using pk_DR)
+
+        try:
+            with open("public_keys/pk_DR.pem", "rb") as key_file:
+                pk_DR = serialization.load_pem_public_key(
+                    key_file.read(),
+                )
+
+            expected_msg = str(request.owner_id) + ";" + str(request.name)
+            msg_bytes = bytes(expected_msg.encode("utf-8"))
+
+            pk_DR.verify(request.signature,
+                         msg_bytes,
+                         padding.PSS(
+                             mgf=padding.MGF1(hashes.SHA256()),
+                             salt_length=padding.PSS.MAX_LENGTH
+                         ),
+                         hashes.SHA256())
+        except:
+            return database_pb2.DatasetResp(status=-2,
+                                            msg="Signature does not verify")
+
+        # Actually creating the dataset
+
         dataset = dataset_repo.create_dataset(self.db, request)
         if dataset:
             return database_pb2.DatasetResp(status=1, msg="success", data=[dataset])
