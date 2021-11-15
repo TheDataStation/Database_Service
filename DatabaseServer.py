@@ -141,12 +141,38 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
         # return database_pb2.MetadataResponse(status=1, message="fail", metadataID=[])
         return database_pb2.MetadataResponse(status=0, message="success", metadataID=metadata_ID_array)
 
+    # TODO: Virtual enclave code starts here
+
     def GetDatasetOwner(self, request, context):
         user = dataset_repo.get_dataset_owner(self.db, request.id)
         if user:
-            return database_pb2.UserResponse(status=1, msg="success", data=[user])
+            # Create signature using sk_DBS (in here we sign user_name + id)
+
+            with open("secret_keys/sk_DBS.pem", "rb") as key_file:
+                sk_DBS = serialization.load_pem_private_key(
+                    key_file.read(),
+                    password=None,
+                )
+
+            msg_str = str(user.user_name) + ";" + str(user.id)
+            msg_bytes = bytes(msg_str.encode("utf-8"))
+
+            msg_sig = sk_DBS.sign(
+                msg_bytes,
+                padding.PSS(
+                    mgf=padding.MGF1(hashes.SHA256()),
+                    salt_length=padding.PSS.MAX_LENGTH
+                ),
+                hashes.SHA256()
+            )
+            return database_pb2.UserResponse(status=1,
+                                             msg="success",
+                                             data=[user],
+                                             signature=msg_sig,)
         else:
             return database_pb2.UserResponse(status=-1, msg="error checking dataset owner", data=[])
+
+    # TODO: Virtual enclave code ends here
 
 
 def serve():
