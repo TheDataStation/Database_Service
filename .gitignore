@@ -1,6 +1,7 @@
 .idea
 data_station.db
 public_keys/
+secret_keys/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

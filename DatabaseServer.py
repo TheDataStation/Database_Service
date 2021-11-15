@@ -51,12 +51,41 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
         else:
             return database_pb2.UserResponse(status=-1, msg="user does not exist", data=[])
 
+    # TODO: Virtual enclave code starts here
+
     def GetUserByUserName(self, request, context):
         user = user_repo.get_user_by_user_name(self.db, request.user_name)
+
         if user:
-            return database_pb2.UserResponse(status=1, msg="success", data=[user])
+
+            # Create signature using sk_DBS (in here we sign user_name + id)
+
+            with open("secret_keys/sk_DBS.pem", "rb") as key_file:
+                sk_DBS = serialization.load_pem_private_key(
+                    key_file.read(),
+                    password=None,
+                )
+
+            msg_str = str(user.user_name) + ";" + str(user.id)
+            msg_bytes = bytes(msg_str.encode("utf-8"))
+
+            msg_sig = sk_DBS.sign(
+                msg_bytes,
+                padding.PSS(
+                    mgf=padding.MGF1(hashes.SHA256()),
+                    salt_length=padding.PSS.MAX_LENGTH
+                ),
+                hashes.SHA256()
+            )
+
+            return database_pb2.UserResponse(status=1,
+                                             msg="success",
+                                             data=[user],
+                                             signature=msg_sig,)
         else:
             return database_pb2.UserResponse(status=-1, msg="user does not exist", data=[])
+
+    # TODO: Virtual enclave code ends here
 
     def CreateDataset(self, request, context):
 
