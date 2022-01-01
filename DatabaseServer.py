@@ -5,11 +5,8 @@ import grpc
 from concurrent import futures
 import logging
 import database_pb2
-from cryptography.hazmat.primitives import hashes, serialization
-from cryptography.hazmat.primitives.asymmetric import rsa, padding
 
 Base.metadata.create_all(engine)
-
 
 def get_db():
     db = SessionLocal()
@@ -17,7 +14,6 @@ def get_db():
         yield db
     finally:
         db.close()
-
 
 class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
     def __init__(self):
@@ -51,65 +47,18 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
         else:
             return database_pb2.UserResponse(status=-1, msg="user does not exist", data=[])
 
-    # TODO: Virtual enclave code starts here
 
     def GetUserByUserName(self, request, context):
         user = user_repo.get_user_by_user_name(self.db, request.user_name)
 
         if user:
-
-            # Create signature using sk_DBS (in here we sign user_name + id)
-
-            with open("secret_keys/sk_DBS.pem", "rb") as key_file:
-                sk_DBS = serialization.load_pem_private_key(
-                    key_file.read(),
-                    password=None,
-                )
-
-            msg_str = str(user.user_name) + ";" + str(user.id)
-            msg_bytes = bytes(msg_str.encode("utf-8"))
-
-            msg_sig = sk_DBS.sign(
-                msg_bytes,
-                padding.PSS(
-                    mgf=padding.MGF1(hashes.SHA256()),
-                    salt_length=padding.PSS.MAX_LENGTH
-                ),
-                hashes.SHA256()
-            )
-
             return database_pb2.UserResponse(status=1,
                                              msg="success",
-                                             data=[user],
-                                             signature=msg_sig,)
+                                             data=[user],)
         else:
             return database_pb2.UserResponse(status=-1, msg="user does not exist", data=[])
 
-    # TODO: Virtual enclave code ends here
-
     def CreateDataset(self, request, context):
-
-        # Before we create dataset, verify request.signature first (using pk_DR)
-
-        try:
-            with open("public_keys/pk_DR.pem", "rb") as key_file:
-                pk_DR = serialization.load_pem_public_key(
-                    key_file.read(),
-                )
-
-            expected_msg = str(request.owner_id) + ";" + str(request.name)
-            msg_bytes = bytes(expected_msg.encode("utf-8"))
-
-            pk_DR.verify(request.signature,
-                         msg_bytes,
-                         padding.PSS(
-                             mgf=padding.MGF1(hashes.SHA256()),
-                             salt_length=padding.PSS.MAX_LENGTH
-                         ),
-                         hashes.SHA256())
-        except:
-            return database_pb2.DatasetResp(status=-2,
-                                            msg="Signature does not verify")
 
         # Actually creating the dataset
 
@@ -144,32 +93,11 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
     def GetDatasetOwner(self, request, context):
         user = dataset_repo.get_dataset_owner(self.db, request.id)
         if user:
-            # Create signature using sk_DBS (in here we sign user_name + id)
-
-            with open("secret_keys/sk_DBS.pem", "rb") as key_file:
-                sk_DBS = serialization.load_pem_private_key(
-                    key_file.read(),
-                    password=None,
-                )
-
-            msg_str = str(user.user_name) + ";" + str(user.id)
-            msg_bytes = bytes(msg_str.encode("utf-8"))
-
-            msg_sig = sk_DBS.sign(
-                msg_bytes,
-                padding.PSS(
-                    mgf=padding.MGF1(hashes.SHA256()),
-                    salt_length=padding.PSS.MAX_LENGTH
-                ),
-                hashes.SHA256()
-            )
             return database_pb2.UserResponse(status=1,
                                              msg="success",
-                                             data=[user],
-                                             signature=msg_sig,)
+                                             data=[user],)
         else:
             return database_pb2.UserResponse(status=-1, msg="error checking dataset owner", data=[])
-
 
 
 def serve():
