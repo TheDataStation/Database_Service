@@ -141,8 +141,6 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
         # return database_pb2.MetadataResponse(status=1, message="fail", metadataID=[])
         return database_pb2.MetadataResponse(status=0, message="success", metadataID=metadata_ID_array)
 
-    # TODO: Virtual enclave code starts here
-
     def GetDatasetOwner(self, request, context):
         user = dataset_repo.get_dataset_owner(self.db, request.id)
         if user:
@@ -172,7 +170,6 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
         else:
             return database_pb2.UserResponse(status=-1, msg="error checking dataset owner", data=[])
 
-    # TODO: Virtual enclave code ends here
 
 
 def serve():
