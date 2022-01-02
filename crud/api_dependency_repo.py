@@ -15,3 +15,7 @@ def create_api_dependency(db: Session, api_depend: APIDependencyCreate):
         db.rollback()
         return None
     return db_api_depend.to_pb_api_depend()
+
+def get_all_dependencies(db: Session):
+    api_depends = db.query(APIDependency).all()
+    return [depend.to_pb_api_depend() for depend in api_depends]

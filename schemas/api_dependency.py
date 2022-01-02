@@ -6,4 +6,3 @@ class APIDependencyCreate(BaseModel):
 
     class Config:
         orm_mode = True
-        

@@ -14,9 +14,10 @@ service Database {
   rpc GetDatasetOwner(Dataset) returns (UserResponse) {}
 
   rpc CreateAPI(API) returns (APIResp) {}
-  rpc GetAllAPIs(APIEmpty) returns (GetAPIResp) {}
+  rpc GetAllAPIs(DBEmpty) returns (GetAPIResp) {}
 
   rpc CreateAPIDependency(APIDependency) returns (APIDependencyResp) {}
+  rpc GetAllDependencies(DBEmpty) returns (APIDependencyResp) {}
 }
 
 message User {
@@ -75,7 +76,7 @@ message API {
   string api_name = 1;
 }
 
-message APIEmpty {
+message DBEmpty {
 
 }
 

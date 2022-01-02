@@ -71,12 +71,17 @@ class DatabaseStub(object):
                 )
         self.GetAllAPIs = channel.unary_unary(
                 '/Database/GetAllAPIs',
-                request_serializer=database__pb2.APIEmpty.SerializeToString,
+                request_serializer=database__pb2.DBEmpty.SerializeToString,
                 response_deserializer=database__pb2.GetAPIResp.FromString,
                 )
         self.CreateAPIDependency = channel.unary_unary(
                 '/Database/CreateAPIDependency',
                 request_serializer=database__pb2.APIDependency.SerializeToString,
+                response_deserializer=database__pb2.APIDependencyResp.FromString,
+                )
+        self.GetAllDependencies = channel.unary_unary(
+                '/Database/GetAllDependencies',
+                request_serializer=database__pb2.DBEmpty.SerializeToString,
                 response_deserializer=database__pb2.APIDependencyResp.FromString,
                 )
 
@@ -162,6 +167,12 @@ class DatabaseServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetAllDependencies(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DatabaseServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -222,12 +233,17 @@ def add_DatabaseServicer_to_server(servicer, server):
             ),
             'GetAllAPIs': grpc.unary_unary_rpc_method_handler(
                     servicer.GetAllAPIs,
-                    request_deserializer=database__pb2.APIEmpty.FromString,
+                    request_deserializer=database__pb2.DBEmpty.FromString,
                     response_serializer=database__pb2.GetAPIResp.SerializeToString,
             ),
             'CreateAPIDependency': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateAPIDependency,
                     request_deserializer=database__pb2.APIDependency.FromString,
+                    response_serializer=database__pb2.APIDependencyResp.SerializeToString,
+            ),
+            'GetAllDependencies': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetAllDependencies,
+                    request_deserializer=database__pb2.DBEmpty.FromString,
                     response_serializer=database__pb2.APIDependencyResp.SerializeToString,
             ),
     }
@@ -439,7 +455,7 @@ class Database(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Database/GetAllAPIs',
-            database__pb2.APIEmpty.SerializeToString,
+            database__pb2.DBEmpty.SerializeToString,
             database__pb2.GetAPIResp.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -457,6 +473,23 @@ class Database(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Database/CreateAPIDependency',
             database__pb2.APIDependency.SerializeToString,
+            database__pb2.APIDependencyResp.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetAllDependencies(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Database/GetAllDependencies',
+            database__pb2.DBEmpty.SerializeToString,
             database__pb2.APIDependencyResp.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

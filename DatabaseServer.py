@@ -123,6 +123,14 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
         else:
             return database_pb2.GetAPIResp(status=-1, msg="no existing apis", data=[])
 
+    # Get all API dependencies
+    def GetAllDependencies(self, request, context):
+        api_depends = api_dependency_repo.get_all_dependencies(self.db)
+        if len(api_depends):
+            return database_pb2.APIDependencyResp(status=1, msg="success", data=api_depends)
+        else:
+            return database_pb2.APIDependencyResp(status=-1, msg="no existing apis", data=[])
+
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
