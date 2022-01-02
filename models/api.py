@@ -1,8 +1,8 @@
 from sqlalchemy import Column, String
-from sqlalchemy.orm import relationship
 
-from database import Base
 import database_pb2
+from database import Base
+
 
 class API(Base):
     __tablename__ = "APIs"
