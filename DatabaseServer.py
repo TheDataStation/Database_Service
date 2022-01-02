@@ -1,6 +1,6 @@
 import database_pb2_grpc
 from database import SessionLocal, engine, Base
-from crud import user_repo, dataset_repo, api_repo, api_dependency_repo
+from crud import user_repo, dataset_repo, api_repo, api_dependency_repo, policy_repo
 import grpc
 from concurrent import futures
 import logging
@@ -115,6 +115,14 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
         else:
             return database_pb2.APIDependencyResp(status=-1, msg="fail", data=[])
 
+    # Registering a new policy
+    def CreatePolicy(self, request, context):
+        policy = policy_repo.create_policy(self.db, request)
+        if policy:
+            return database_pb2.PolicyResp(status=1, msg="success", data=[policy])
+        else:
+            return database_pb2.PolicyResp(status=-1, msg="fail", data=[])
+
     # Get all APIs
     def GetAllAPIs(self, request, context):
         apis = api_repo.get_all_apis(self.db)
@@ -130,6 +138,7 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
             return database_pb2.APIDependencyResp(status=1, msg="success", data=api_depends)
         else:
             return database_pb2.APIDependencyResp(status=-1, msg="no existing apis", data=[])
+
 
 
 def serve():

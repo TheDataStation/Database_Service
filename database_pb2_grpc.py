@@ -84,6 +84,11 @@ class DatabaseStub(object):
                 request_serializer=database__pb2.DBEmpty.SerializeToString,
                 response_deserializer=database__pb2.APIDependencyResp.FromString,
                 )
+        self.CreatePolicy = channel.unary_unary(
+                '/Database/CreatePolicy',
+                request_serializer=database__pb2.Policy.SerializeToString,
+                response_deserializer=database__pb2.PolicyResp.FromString,
+                )
 
 
 class DatabaseServicer(object):
@@ -173,6 +178,12 @@ class DatabaseServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def CreatePolicy(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DatabaseServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -245,6 +256,11 @@ def add_DatabaseServicer_to_server(servicer, server):
                     servicer.GetAllDependencies,
                     request_deserializer=database__pb2.DBEmpty.FromString,
                     response_serializer=database__pb2.APIDependencyResp.SerializeToString,
+            ),
+            'CreatePolicy': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreatePolicy,
+                    request_deserializer=database__pb2.Policy.FromString,
+                    response_serializer=database__pb2.PolicyResp.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -491,5 +507,22 @@ class Database(object):
         return grpc.experimental.unary_unary(request, target, '/Database/GetAllDependencies',
             database__pb2.DBEmpty.SerializeToString,
             database__pb2.APIDependencyResp.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CreatePolicy(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Database/CreatePolicy',
+            database__pb2.Policy.SerializeToString,
+            database__pb2.PolicyResp.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

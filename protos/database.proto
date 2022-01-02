@@ -18,6 +18,8 @@ service Database {
 
   rpc CreateAPIDependency(APIDependency) returns (APIDependencyResp) {}
   rpc GetAllDependencies(DBEmpty) returns (APIDependencyResp) {}
+
+  rpc CreatePolicy(Policy) returns (PolicyResp) {}
 }
 
 message User {
@@ -101,4 +103,16 @@ message APIDependencyResp {
   int32 status = 1;
   string msg = 2;
   repeated APIDependency data = 3;
+}
+
+message Policy {
+  int32 user_id = 1;
+  string api = 2;
+  int32 data_id = 3;
+}
+
+message PolicyResp {
+  int32 status = 1;
+  string msg = 2;
+  repeated Policy data = 3;
 }
