@@ -14,6 +14,7 @@ service Database {
   rpc GetDatasetOwner(Dataset) returns (UserResponse) {}
 
   rpc CreateAPI(API) returns (APIResp) {}
+  rpc GetAllAPIs(APIEmpty) returns (GetAPIResp) {}
 
   rpc CreateAPIDependency(APIDependency) returns (APIDependencyResp) {}
 }
@@ -74,10 +75,20 @@ message API {
   string api_name = 1;
 }
 
+message APIEmpty {
+
+}
+
 message APIResp {
   int32 status = 1;
   string msg = 2;
   repeated API data = 3;
+}
+
+message GetAPIResp {
+  int32 status = 1;
+  string msg = 2;
+  repeated string data = 3;
 }
 
 message APIDependency {

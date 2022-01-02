@@ -14,3 +14,10 @@ def create_api(db: Session, api: APICreate):
         db.rollback()
         return None
     return db_api.to_pb_api()
+
+def get_all_apis(db: Session):
+    apis = db.query(API).all()
+    api_name_array = []
+    for api in apis:
+        api_name_array.append(api.api_name)
+    return api_name_array
