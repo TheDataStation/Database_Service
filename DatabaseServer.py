@@ -1,6 +1,6 @@
 import database_pb2_grpc
 from database import SessionLocal, engine, Base
-from crud import user_repo, dataset_repo
+from crud import user_repo, dataset_repo, api_repo
 import grpc
 from concurrent import futures
 import logging
@@ -98,6 +98,14 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
                                              data=[user],)
         else:
             return database_pb2.UserResponse(status=-1, msg="error checking dataset owner", data=[])
+
+    # Registering a new API
+    def CreateAPI(self, request, context):
+        api = api_repo.create_api(self.db, request)
+        if api:
+            return database_pb2.APIResp(status=1, msg="success", data=[api])
+        else:
+            return database_pb2.APIResp(status=-1, msg="fail", data=[])
 
 
 def serve():
