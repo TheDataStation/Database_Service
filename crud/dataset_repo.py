@@ -1,11 +1,10 @@
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import SQLAlchemyError
 
 from models.dataset import Dataset
 from models.user import User
 
 from schemas.dataset import DatasetCreate
-
-from sqlalchemy.exc import SQLAlchemyError
 
 
 def get_datasets(db: Session, limit: int = 100):

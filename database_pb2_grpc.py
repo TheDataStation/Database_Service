@@ -64,6 +64,11 @@ class DatabaseStub(object):
                 request_serializer=database__pb2.Dataset.SerializeToString,
                 response_deserializer=database__pb2.UserResponse.FromString,
                 )
+        self.CreateAPI = channel.unary_unary(
+                '/Database/CreateAPI',
+                request_serializer=database__pb2.API.SerializeToString,
+                response_deserializer=database__pb2.APIResp.FromString,
+                )
 
 
 class DatabaseServicer(object):
@@ -129,6 +134,12 @@ class DatabaseServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def CreateAPI(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DatabaseServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -181,6 +192,11 @@ def add_DatabaseServicer_to_server(servicer, server):
                     servicer.GetDatasetOwner,
                     request_deserializer=database__pb2.Dataset.FromString,
                     response_serializer=database__pb2.UserResponse.SerializeToString,
+            ),
+            'CreateAPI': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateAPI,
+                    request_deserializer=database__pb2.API.FromString,
+                    response_serializer=database__pb2.APIResp.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -359,5 +375,22 @@ class Database(object):
         return grpc.experimental.unary_unary(request, target, '/Database/GetDatasetOwner',
             database__pb2.Dataset.SerializeToString,
             database__pb2.UserResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CreateAPI(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Database/CreateAPI',
+            database__pb2.API.SerializeToString,
+            database__pb2.APIResp.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

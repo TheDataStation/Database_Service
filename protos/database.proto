@@ -12,6 +12,8 @@ service Database {
   rpc GetDatasetById(Dataset) returns (DatasetResp) {}
   rpc GetAllMetadataID(DatabaseEmpty) returns (MetadataResponse) {}
   rpc GetDatasetOwner(Dataset) returns (UserResponse) {}
+
+  rpc CreateAPI(API) returns (APIResp) {}
 }
 
 message User {
@@ -68,6 +70,12 @@ message MetadataResponse {
 // For API table
 message API {
   string api_name = 1;
+}
+
+message APIResp {
+  int32 status = 1;
+  string msg = 2;
+  repeated API api = 3;
 }
 
 
