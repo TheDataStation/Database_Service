@@ -65,4 +65,9 @@ message MetadataResponse {
   repeated int32 metadataID = 3;
 }
 
+// For API table
+message API {
+  string api_name = 1;
+}
+
 

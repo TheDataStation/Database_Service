@@ -1,9 +1,9 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
+import database_pb2
 from database import Base
 
-import database_pb2
 
 from models.dataset import Dataset
 
