@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0e\x64\x61tabase.proto\"\xa2\x01\n\x04User\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x11\n\tuser_name\x18\x02 \x01(\t\x12\x12\n\nfirst_name\x18\x03 \x01(\t\x12\x11\n\tlast_name\x18\x04 \x01(\t\x12\x10\n\x08password\x18\x05 \x01(\t\x12\r\n\x05\x65mail\x18\x06 \x01(\t\x12\x13\n\x0binstitution\x18\x07 \x01(\t\x12\x0f\n\x07\x63ountry\x18\x08 \x01(\t\x12\r\n\x05limit\x18\t \x01(\x05\"S\n\x0cUserResponse\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x13\n\x04\x64\x61ta\x18\x03 \x03(\x0b\x32\x05.User\x12\x11\n\tsignature\x18\x04 \x01(\x0c\"\xb9\x01\n\x07\x44\x61taset\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x0e\n\x06upload\x18\x04 \x01(\x08\x12\x0b\n\x03url\x18\x05 \x01(\t\x12\x10\n\x08owner_id\x18\x06 \x01(\x05\x12\x0f\n\x07\x64\x65rived\x18\x07 \x01(\x08\x12\x14\n\x0c\x64\x65rived_type\x18\x08 \x01(\t\x12\x16\n\x0eorigin_data_id\x18\t \x01(\x05\x12\x11\n\tsignature\x18\n \x01(\x0c\"B\n\x0b\x44\x61tasetResp\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x16\n\x04\x64\x61ta\x18\x03 \x03(\x0b\x32\x08.Dataset\"\x0f\n\rDatabaseEmpty\"G\n\x10MetadataResponse\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x12\n\nmetadataID\x18\x03 \x03(\x05\"\x17\n\x03\x41PI\x12\x10\n\x08\x61pi_name\x18\x01 \x01(\t\":\n\x07\x41PIResp\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x12\n\x04\x64\x61ta\x18\x03 \x03(\x0b\x32\x04.API2\xdc\x03\n\x08\x44\x61tabase\x12$\n\nCreateUser\x12\x05.User\x1a\r.UserResponse\"\x00\x12!\n\x07GetUser\x12\x05.User\x1a\r.UserResponse\"\x00\x12%\n\x0bGetAllUsers\x12\x05.User\x1a\r.UserResponse\"\x00\x12+\n\x11GetUserByUserName\x12\x05.User\x1a\r.UserResponse\"\x00\x12(\n\x0eGetUserByEmail\x12\x05.User\x1a\r.UserResponse\"\x00\x12)\n\rCreateDataset\x12\x08.Dataset\x1a\x0c.DatasetResp\"\x00\x12,\n\x10GetDatasetByName\x12\x08.Dataset\x1a\x0c.DatasetResp\"\x00\x12*\n\x0eGetDatasetById\x12\x08.Dataset\x1a\x0c.DatasetResp\"\x00\x12\x37\n\x10GetAllMetadataID\x12\x0e.DatabaseEmpty\x1a\x11.MetadataResponse\"\x00\x12,\n\x0fGetDatasetOwner\x12\x08.Dataset\x1a\r.UserResponse\"\x00\x12\x1d\n\tCreateAPI\x12\x04.API\x1a\x08.APIResp\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0e\x64\x61tabase.proto\"\xa2\x01\n\x04User\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x11\n\tuser_name\x18\x02 \x01(\t\x12\x12\n\nfirst_name\x18\x03 \x01(\t\x12\x11\n\tlast_name\x18\x04 \x01(\t\x12\x10\n\x08password\x18\x05 \x01(\t\x12\r\n\x05\x65mail\x18\x06 \x01(\t\x12\x13\n\x0binstitution\x18\x07 \x01(\t\x12\x0f\n\x07\x63ountry\x18\x08 \x01(\t\x12\r\n\x05limit\x18\t \x01(\x05\"S\n\x0cUserResponse\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x13\n\x04\x64\x61ta\x18\x03 \x03(\x0b\x32\x05.User\x12\x11\n\tsignature\x18\x04 \x01(\x0c\"\xb9\x01\n\x07\x44\x61taset\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x0e\n\x06upload\x18\x04 \x01(\x08\x12\x0b\n\x03url\x18\x05 \x01(\t\x12\x10\n\x08owner_id\x18\x06 \x01(\x05\x12\x0f\n\x07\x64\x65rived\x18\x07 \x01(\x08\x12\x14\n\x0c\x64\x65rived_type\x18\x08 \x01(\t\x12\x16\n\x0eorigin_data_id\x18\t \x01(\x05\x12\x11\n\tsignature\x18\n \x01(\x0c\"B\n\x0b\x44\x61tasetResp\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x16\n\x04\x64\x61ta\x18\x03 \x03(\x0b\x32\x08.Dataset\"\x0f\n\rDatabaseEmpty\"G\n\x10MetadataResponse\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x12\n\nmetadataID\x18\x03 \x03(\x05\"\x17\n\x03\x41PI\x12\x10\n\x08\x61pi_name\x18\x01 \x01(\t\":\n\x07\x41PIResp\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x12\n\x04\x64\x61ta\x18\x03 \x03(\x0b\x32\x04.API\"1\n\rAPIDependency\x12\x10\n\x08\x66rom_api\x18\x01 \x01(\t\x12\x0e\n\x06to_api\x18\x02 \x01(\t\"N\n\x11\x41PIDependencyResp\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x1c\n\x04\x64\x61ta\x18\x03 \x03(\x0b\x32\x0e.APIDependency2\x99\x04\n\x08\x44\x61tabase\x12$\n\nCreateUser\x12\x05.User\x1a\r.UserResponse\"\x00\x12!\n\x07GetUser\x12\x05.User\x1a\r.UserResponse\"\x00\x12%\n\x0bGetAllUsers\x12\x05.User\x1a\r.UserResponse\"\x00\x12+\n\x11GetUserByUserName\x12\x05.User\x1a\r.UserResponse\"\x00\x12(\n\x0eGetUserByEmail\x12\x05.User\x1a\r.UserResponse\"\x00\x12)\n\rCreateDataset\x12\x08.Dataset\x1a\x0c.DatasetResp\"\x00\x12,\n\x10GetDatasetByName\x12\x08.Dataset\x1a\x0c.DatasetResp\"\x00\x12*\n\x0eGetDatasetById\x12\x08.Dataset\x1a\x0c.DatasetResp\"\x00\x12\x37\n\x10GetAllMetadataID\x12\x0e.DatabaseEmpty\x1a\x11.MetadataResponse\"\x00\x12,\n\x0fGetDatasetOwner\x12\x08.Dataset\x1a\r.UserResponse\"\x00\x12\x1d\n\tCreateAPI\x12\x04.API\x1a\x08.APIResp\"\x00\x12;\n\x13\x43reateAPIDependency\x12\x0e.APIDependency\x1a\x12.APIDependencyResp\"\x00\x62\x06proto3'
 )
 
 
@@ -455,9 +455,95 @@ _APIRESP = _descriptor.Descriptor(
   serialized_end=697,
 )
 
+
+_APIDEPENDENCY = _descriptor.Descriptor(
+  name='APIDependency',
+  full_name='APIDependency',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='from_api', full_name='APIDependency.from_api', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='to_api', full_name='APIDependency.to_api', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=699,
+  serialized_end=748,
+)
+
+
+_APIDEPENDENCYRESP = _descriptor.Descriptor(
+  name='APIDependencyResp',
+  full_name='APIDependencyResp',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='status', full_name='APIDependencyResp.status', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='msg', full_name='APIDependencyResp.msg', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='data', full_name='APIDependencyResp.data', index=2,
+      number=3, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=750,
+  serialized_end=828,
+)
+
 _USERRESPONSE.fields_by_name['data'].message_type = _USER
 _DATASETRESP.fields_by_name['data'].message_type = _DATASET
 _APIRESP.fields_by_name['data'].message_type = _API
+_APIDEPENDENCYRESP.fields_by_name['data'].message_type = _APIDEPENDENCY
 DESCRIPTOR.message_types_by_name['User'] = _USER
 DESCRIPTOR.message_types_by_name['UserResponse'] = _USERRESPONSE
 DESCRIPTOR.message_types_by_name['Dataset'] = _DATASET
@@ -466,6 +552,8 @@ DESCRIPTOR.message_types_by_name['DatabaseEmpty'] = _DATABASEEMPTY
 DESCRIPTOR.message_types_by_name['MetadataResponse'] = _METADATARESPONSE
 DESCRIPTOR.message_types_by_name['API'] = _API
 DESCRIPTOR.message_types_by_name['APIResp'] = _APIRESP
+DESCRIPTOR.message_types_by_name['APIDependency'] = _APIDEPENDENCY
+DESCRIPTOR.message_types_by_name['APIDependencyResp'] = _APIDEPENDENCYRESP
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 User = _reflection.GeneratedProtocolMessageType('User', (_message.Message,), {
@@ -524,6 +612,20 @@ APIResp = _reflection.GeneratedProtocolMessageType('APIResp', (_message.Message,
   })
 _sym_db.RegisterMessage(APIResp)
 
+APIDependency = _reflection.GeneratedProtocolMessageType('APIDependency', (_message.Message,), {
+  'DESCRIPTOR' : _APIDEPENDENCY,
+  '__module__' : 'database_pb2'
+  # @@protoc_insertion_point(class_scope:APIDependency)
+  })
+_sym_db.RegisterMessage(APIDependency)
+
+APIDependencyResp = _reflection.GeneratedProtocolMessageType('APIDependencyResp', (_message.Message,), {
+  'DESCRIPTOR' : _APIDEPENDENCYRESP,
+  '__module__' : 'database_pb2'
+  # @@protoc_insertion_point(class_scope:APIDependencyResp)
+  })
+_sym_db.RegisterMessage(APIDependencyResp)
+
 
 
 _DATABASE = _descriptor.ServiceDescriptor(
@@ -533,8 +635,8 @@ _DATABASE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=700,
-  serialized_end=1176,
+  serialized_start=831,
+  serialized_end=1368,
   methods=[
   _descriptor.MethodDescriptor(
     name='CreateUser',
@@ -643,6 +745,16 @@ _DATABASE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_API,
     output_type=_APIRESP,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='CreateAPIDependency',
+    full_name='Database.CreateAPIDependency',
+    index=11,
+    containing_service=None,
+    input_type=_APIDEPENDENCY,
+    output_type=_APIDEPENDENCYRESP,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
