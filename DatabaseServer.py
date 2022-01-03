@@ -137,7 +137,15 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
         if len(api_depends):
             return database_pb2.APIDependencyResp(status=1, msg="success", data=api_depends)
         else:
-            return database_pb2.APIDependencyResp(status=-1, msg="no existing apis", data=[])
+            return database_pb2.APIDependencyResp(status=-1, msg="no existing dependencies", data=[])
+
+    # Get all policies
+    def GetAllPolicies(self, request, context):
+        policies = policy_repo.get_all_policies(self.db)
+        if len(policies):
+            return database_pb2.PolicyResp(status=1, msg="success", data=policies)
+        else:
+            return database_pb2.PolicyResp(status=-1, msg="no existing policies", data=[])
 
 
 

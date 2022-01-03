@@ -16,3 +16,7 @@ def create_policy(db: Session, policy: PolicyCreate):
         db.rollback()
         return None
     return db_policy.to_pb_policy()
+
+def get_all_policies(db: Session):
+    policies = db.query(Policy).all()
+    return [policy.to_pb_policy() for policy in policies]
