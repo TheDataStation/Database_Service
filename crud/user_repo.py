@@ -21,8 +21,9 @@ def get_user_by_user_name(db: Session, user_name: str):
         return None
 
 
-def get_users(db: Session, limit: int = 100):
-    users = db.query(User).limit(limit).all()
+def get_users(db: Session):
+    # users = db.query(User).limit(limit).all()
+    users = db.query(User).all()
     return [user.to_pb_user() for user in users]
 
 

@@ -26,7 +26,7 @@ class DatabaseStub(object):
                 )
         self.GetAllUsers = channel.unary_unary(
                 '/Database/GetAllUsers',
-                request_serializer=database__pb2.User.SerializeToString,
+                request_serializer=database__pb2.DBEmpty.SerializeToString,
                 response_deserializer=database__pb2.UserResponse.FromString,
                 )
         self.GetUserByUserName = channel.unary_unary(
@@ -199,7 +199,7 @@ def add_DatabaseServicer_to_server(servicer, server):
             ),
             'GetAllUsers': grpc.unary_unary_rpc_method_handler(
                     servicer.GetAllUsers,
-                    request_deserializer=database__pb2.User.FromString,
+                    request_deserializer=database__pb2.DBEmpty.FromString,
                     response_serializer=database__pb2.UserResponse.SerializeToString,
             ),
             'GetUserByUserName': grpc.unary_unary_rpc_method_handler(
@@ -318,7 +318,7 @@ class Database(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Database/GetAllUsers',
-            database__pb2.User.SerializeToString,
+            database__pb2.DBEmpty.SerializeToString,
             database__pb2.UserResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

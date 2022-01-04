@@ -3,7 +3,7 @@ syntax = "proto3";
 service Database {
   rpc CreateUser(User) returns (UserResponse) {}
   rpc GetUser(User) returns (UserResponse) {}
-  rpc GetAllUsers(User) returns (UserResponse) {}
+  rpc GetAllUsers(DBEmpty) returns (UserResponse) {}
   rpc GetUserByUserName(User) returns (UserResponse) {}
 
   rpc CreateDataset(Dataset) returns (DatasetResp) {}

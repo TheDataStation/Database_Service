@@ -34,7 +34,7 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
             return database_pb2.UserResponse(status=-1, msg="user does not exist", data=[])
 
     def GetAllUsers(self, request, context):
-        users = user_repo.get_users(self.db, request.limit)
+        users = user_repo.get_users(self.db)
         if len(users):
             return database_pb2.UserResponse(status=1, msg="success", data=users)
         else:
