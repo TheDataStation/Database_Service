@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, String, Integer, ForeignKey
 
 import database_pb2
 from database import Base
@@ -7,8 +7,8 @@ from database import Base
 class Policy(Base):
     __tablename__ = "Policy"
 
-    user_id = Column(Integer, primary_key=True)
-    api = Column(String, primary_key=True)
+    user_id = Column(Integer, ForeignKey("users.id"), primary_key=True)
+    api = Column(String, ForeignKey("APIs.api_name"), primary_key=True)
     data_id = Column(Integer, primary_key=True)
 
     def to_pb_policy(self):

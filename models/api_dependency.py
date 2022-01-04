@@ -8,7 +8,7 @@ class APIDependency(Base):
     __tablename__ = "APIDependency"
 
     from_api = Column(String, ForeignKey("APIs.api_name"), primary_key=True,)
-    to_api = Column(String, primary_key=True)
+    to_api = Column(String, ForeignKey("APIs.api_name"), primary_key=True)
 
 
     def to_pb_api_depend(self):
