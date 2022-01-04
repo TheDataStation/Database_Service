@@ -40,14 +40,6 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
         else:
             return database_pb2.UserResponse(status=-1, msg="no existing users", data=[])
 
-    def GetUserByEmail(self, request, context):
-        user = user_repo.get_user_by_email(self.db, request.email)
-        if user:
-            return database_pb2.UserResponse(status=1, msg="success", data=[user])
-        else:
-            return database_pb2.UserResponse(status=-1, msg="user does not exist", data=[])
-
-
     def GetUserByUserName(self, request, context):
         user = user_repo.get_user_by_user_name(self.db, request.user_name)
 

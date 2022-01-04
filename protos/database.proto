@@ -5,7 +5,6 @@ service Database {
   rpc GetUser(User) returns (UserResponse) {}
   rpc GetAllUsers(User) returns (UserResponse) {}
   rpc GetUserByUserName(User) returns (UserResponse) {}
-  rpc GetUserByEmail(User) returns (UserResponse) {}
 
   rpc CreateDataset(Dataset) returns (DatasetResp) {}
   rpc GetDatasetByName(Dataset) returns (DatasetResp) {}
@@ -26,13 +25,8 @@ service Database {
 message User {
   int32 id = 1;
   string user_name = 2;
-  string first_name = 3;
-  string last_name = 4;
-  string password = 5;
-  string email = 6;
-  string institution = 7;
-  string country = 8;
-  int32 limit = 9;
+  string password = 3;
+  int32 limit = 4;
 }
 
 message UserResponse {

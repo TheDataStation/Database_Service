@@ -34,11 +34,6 @@ class DatabaseStub(object):
                 request_serializer=database__pb2.User.SerializeToString,
                 response_deserializer=database__pb2.UserResponse.FromString,
                 )
-        self.GetUserByEmail = channel.unary_unary(
-                '/Database/GetUserByEmail',
-                request_serializer=database__pb2.User.SerializeToString,
-                response_deserializer=database__pb2.UserResponse.FromString,
-                )
         self.CreateDataset = channel.unary_unary(
                 '/Database/CreateDataset',
                 request_serializer=database__pb2.Dataset.SerializeToString,
@@ -118,12 +113,6 @@ class DatabaseServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetUserByUserName(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def GetUserByEmail(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -215,11 +204,6 @@ def add_DatabaseServicer_to_server(servicer, server):
             ),
             'GetUserByUserName': grpc.unary_unary_rpc_method_handler(
                     servicer.GetUserByUserName,
-                    request_deserializer=database__pb2.User.FromString,
-                    response_serializer=database__pb2.UserResponse.SerializeToString,
-            ),
-            'GetUserByEmail': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetUserByEmail,
                     request_deserializer=database__pb2.User.FromString,
                     response_serializer=database__pb2.UserResponse.SerializeToString,
             ),
@@ -351,23 +335,6 @@ class Database(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Database/GetUserByUserName',
-            database__pb2.User.SerializeToString,
-            database__pb2.UserResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def GetUserByEmail(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Database/GetUserByEmail',
             database__pb2.User.SerializeToString,
             database__pb2.UserResponse.FromString,
             options, channel_credentials,
