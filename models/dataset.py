@@ -13,17 +13,10 @@ class Dataset(Base):
     description = Column(String)
     upload = Column(Boolean)
     url = Column(String)
+    # owner_id = Column(Integer, ForeignKey("users.id"))
+    owner_id = Column(Integer)
 
-    created_at = Column(DateTime)
-    updated_at = Column(DateTime)
-
-    # Newly added attributes (to keep track of some derived data info)
-    derived = Column(Boolean)  # True -> is a derived data product
-    derived_type = Column(String)  # Currently, it will have one value "metadata", to support CatalogReader
-    origin_data_id = Column(Integer)  # Id of the original dataset
-
-    owner_id = Column(Integer, ForeignKey("users.id"))
-    owner = relationship("User", back_populates="datasets")
+    # owner = relationship("User", back_populates="datasets")
 
     def to_pb_dataset(self):
         return database_pb2.Dataset(id=self.id,
@@ -32,7 +25,4 @@ class Dataset(Base):
                                     upload=self.upload,
                                     url=self.url,
                                     owner_id=self.owner_id,
-                                    derived=self.derived,
-                                    derived_type=self.derived_type,
-                                    origin_data_id=self.origin_data_id
                                     )

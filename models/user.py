@@ -15,7 +15,7 @@ class User(Base):
     user_name = Column(String, unique=True, index=True)
     password = Column(String)
 
-    datasets = relationship("Dataset", back_populates="owner")
+    # datasets = relationship("Dataset", back_populates="owner")
 
     def to_pb_user(self):
         return database_pb2.User(id=self.id,
