@@ -27,6 +27,16 @@ def get_dataset_by_name(db: Session, name: str):
         return None
 
 
+def remove_dataset_by_name(db: Session, name: str):
+    try:
+        db.query(Dataset).filter(Dataset.name == name).delete()
+        db.commit()
+    except SQLAlchemyError as e:
+        db.rollback()
+        return None
+    return "success"
+
+
 def create_dataset(db: Session, dataset: DatasetCreate):
     db_dataset = Dataset(id=dataset.id,
                          owner_id=dataset.owner_id,
