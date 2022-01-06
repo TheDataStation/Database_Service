@@ -74,7 +74,6 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
         else:
             return database_pb2.DatasetResp(status=-1, msg="fail", data=[])
 
-
     def GetDatasetById(self, request, context):
         dataset = dataset_repo.get_dataset_by_id(self.db, request.id)
         if dataset:
