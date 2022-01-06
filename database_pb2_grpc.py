@@ -44,6 +44,11 @@ class DatabaseStub(object):
                 request_serializer=database__pb2.Dataset.SerializeToString,
                 response_deserializer=database__pb2.DatasetResp.FromString,
                 )
+        self.RemoveDatasetByName = channel.unary_unary(
+                '/Database/RemoveDatasetByName',
+                request_serializer=database__pb2.Dataset.SerializeToString,
+                response_deserializer=database__pb2.DatasetResp.FromString,
+                )
         self.GetDatasetById = channel.unary_unary(
                 '/Database/GetDatasetById',
                 request_serializer=database__pb2.Dataset.SerializeToString,
@@ -125,6 +130,12 @@ class DatabaseServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetDatasetByName(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RemoveDatasetByName(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -214,6 +225,11 @@ def add_DatabaseServicer_to_server(servicer, server):
             ),
             'GetDatasetByName': grpc.unary_unary_rpc_method_handler(
                     servicer.GetDatasetByName,
+                    request_deserializer=database__pb2.Dataset.FromString,
+                    response_serializer=database__pb2.DatasetResp.SerializeToString,
+            ),
+            'RemoveDatasetByName': grpc.unary_unary_rpc_method_handler(
+                    servicer.RemoveDatasetByName,
                     request_deserializer=database__pb2.Dataset.FromString,
                     response_serializer=database__pb2.DatasetResp.SerializeToString,
             ),
@@ -369,6 +385,23 @@ class Database(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Database/GetDatasetByName',
+            database__pb2.Dataset.SerializeToString,
+            database__pb2.DatasetResp.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RemoveDatasetByName(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Database/RemoveDatasetByName',
             database__pb2.Dataset.SerializeToString,
             database__pb2.DatasetResp.FromString,
             options, channel_credentials,

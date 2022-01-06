@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0e\x64\x61tabase.proto\"F\n\x04User\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x11\n\tuser_name\x18\x02 \x01(\t\x12\x10\n\x08password\x18\x03 \x01(\t\x12\r\n\x05limit\x18\x04 \x01(\x05\"S\n\x0cUserResponse\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x13\n\x04\x64\x61ta\x18\x03 \x03(\x0b\x32\x05.User\x12\x11\n\tsignature\x18\x04 \x01(\x0c\"g\n\x07\x44\x61taset\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x0e\n\x06upload\x18\x04 \x01(\x08\x12\x0b\n\x03url\x18\x05 \x01(\t\x12\x10\n\x08owner_id\x18\x06 \x01(\x05\"B\n\x0b\x44\x61tasetResp\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x16\n\x04\x64\x61ta\x18\x03 \x03(\x0b\x32\x08.Dataset\"\x0f\n\rDatabaseEmpty\"G\n\x10MetadataResponse\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x12\n\nmetadataID\x18\x03 \x03(\x05\"\x17\n\x03\x41PI\x12\x10\n\x08\x61pi_name\x18\x01 \x01(\t\"\t\n\x07\x44\x42\x45mpty\":\n\x07\x41PIResp\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x12\n\x04\x64\x61ta\x18\x03 \x03(\x0b\x32\x04.API\"7\n\nGetAPIResp\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x03 \x03(\t\"1\n\rAPIDependency\x12\x10\n\x08\x66rom_api\x18\x01 \x01(\t\x12\x0e\n\x06to_api\x18\x02 \x01(\t\"N\n\x11\x41PIDependencyResp\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x1c\n\x04\x64\x61ta\x18\x03 \x03(\x0b\x32\x0e.APIDependency\"7\n\x06Policy\x12\x0f\n\x07user_id\x18\x01 \x01(\x05\x12\x0b\n\x03\x61pi\x18\x02 \x01(\t\x12\x0f\n\x07\x64\x61ta_id\x18\x03 \x01(\x05\"@\n\nPolicyResp\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x15\n\x04\x64\x61ta\x18\x03 \x03(\x0b\x32\x07.Policy2\xa2\x05\n\x08\x44\x61tabase\x12$\n\nCreateUser\x12\x05.User\x1a\r.UserResponse\"\x00\x12!\n\x07GetUser\x12\x05.User\x1a\r.UserResponse\"\x00\x12(\n\x0bGetAllUsers\x12\x08.DBEmpty\x1a\r.UserResponse\"\x00\x12+\n\x11GetUserByUserName\x12\x05.User\x1a\r.UserResponse\"\x00\x12)\n\rCreateDataset\x12\x08.Dataset\x1a\x0c.DatasetResp\"\x00\x12,\n\x10GetDatasetByName\x12\x08.Dataset\x1a\x0c.DatasetResp\"\x00\x12*\n\x0eGetDatasetById\x12\x08.Dataset\x1a\x0c.DatasetResp\"\x00\x12\x37\n\x10GetAllMetadataID\x12\x0e.DatabaseEmpty\x1a\x11.MetadataResponse\"\x00\x12,\n\x0fGetDatasetOwner\x12\x08.Dataset\x1a\r.UserResponse\"\x00\x12\x1d\n\tCreateAPI\x12\x04.API\x1a\x08.APIResp\"\x00\x12%\n\nGetAllAPIs\x12\x08.DBEmpty\x1a\x0b.GetAPIResp\"\x00\x12;\n\x13\x43reateAPIDependency\x12\x0e.APIDependency\x1a\x12.APIDependencyResp\"\x00\x12\x34\n\x12GetAllDependencies\x12\x08.DBEmpty\x1a\x12.APIDependencyResp\"\x00\x12&\n\x0c\x43reatePolicy\x12\x07.Policy\x1a\x0b.PolicyResp\"\x00\x12)\n\x0eGetAllPolicies\x12\x08.DBEmpty\x1a\x0b.PolicyResp\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0e\x64\x61tabase.proto\"F\n\x04User\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x11\n\tuser_name\x18\x02 \x01(\t\x12\x10\n\x08password\x18\x03 \x01(\t\x12\r\n\x05limit\x18\x04 \x01(\x05\"S\n\x0cUserResponse\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x13\n\x04\x64\x61ta\x18\x03 \x03(\x0b\x32\x05.User\x12\x11\n\tsignature\x18\x04 \x01(\x0c\"g\n\x07\x44\x61taset\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\x0e\n\x06upload\x18\x04 \x01(\x08\x12\x0b\n\x03url\x18\x05 \x01(\t\x12\x10\n\x08owner_id\x18\x06 \x01(\x05\"B\n\x0b\x44\x61tasetResp\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x16\n\x04\x64\x61ta\x18\x03 \x03(\x0b\x32\x08.Dataset\"\x0f\n\rDatabaseEmpty\"G\n\x10MetadataResponse\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x12\n\nmetadataID\x18\x03 \x03(\x05\"\x17\n\x03\x41PI\x12\x10\n\x08\x61pi_name\x18\x01 \x01(\t\"\t\n\x07\x44\x42\x45mpty\":\n\x07\x41PIResp\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x12\n\x04\x64\x61ta\x18\x03 \x03(\x0b\x32\x04.API\"7\n\nGetAPIResp\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x03 \x03(\t\"1\n\rAPIDependency\x12\x10\n\x08\x66rom_api\x18\x01 \x01(\t\x12\x0e\n\x06to_api\x18\x02 \x01(\t\"N\n\x11\x41PIDependencyResp\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x1c\n\x04\x64\x61ta\x18\x03 \x03(\x0b\x32\x0e.APIDependency\"7\n\x06Policy\x12\x0f\n\x07user_id\x18\x01 \x01(\x05\x12\x0b\n\x03\x61pi\x18\x02 \x01(\t\x12\x0f\n\x07\x64\x61ta_id\x18\x03 \x01(\x05\"@\n\nPolicyResp\x12\x0e\n\x06status\x18\x01 \x01(\x05\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x15\n\x04\x64\x61ta\x18\x03 \x03(\x0b\x32\x07.Policy2\xd3\x05\n\x08\x44\x61tabase\x12$\n\nCreateUser\x12\x05.User\x1a\r.UserResponse\"\x00\x12!\n\x07GetUser\x12\x05.User\x1a\r.UserResponse\"\x00\x12(\n\x0bGetAllUsers\x12\x08.DBEmpty\x1a\r.UserResponse\"\x00\x12+\n\x11GetUserByUserName\x12\x05.User\x1a\r.UserResponse\"\x00\x12)\n\rCreateDataset\x12\x08.Dataset\x1a\x0c.DatasetResp\"\x00\x12,\n\x10GetDatasetByName\x12\x08.Dataset\x1a\x0c.DatasetResp\"\x00\x12/\n\x13RemoveDatasetByName\x12\x08.Dataset\x1a\x0c.DatasetResp\"\x00\x12*\n\x0eGetDatasetById\x12\x08.Dataset\x1a\x0c.DatasetResp\"\x00\x12\x37\n\x10GetAllMetadataID\x12\x0e.DatabaseEmpty\x1a\x11.MetadataResponse\"\x00\x12,\n\x0fGetDatasetOwner\x12\x08.Dataset\x1a\r.UserResponse\"\x00\x12\x1d\n\tCreateAPI\x12\x04.API\x1a\x08.APIResp\"\x00\x12%\n\nGetAllAPIs\x12\x08.DBEmpty\x1a\x0b.GetAPIResp\"\x00\x12;\n\x13\x43reateAPIDependency\x12\x0e.APIDependency\x1a\x12.APIDependencyResp\"\x00\x12\x34\n\x12GetAllDependencies\x12\x08.DBEmpty\x1a\x12.APIDependencyResp\"\x00\x12&\n\x0c\x43reatePolicy\x12\x07.Policy\x1a\x0b.PolicyResp\"\x00\x12)\n\x0eGetAllPolicies\x12\x08.DBEmpty\x1a\x0b.PolicyResp\"\x00\x62\x06proto3'
 )
 
 
@@ -769,7 +769,7 @@ _DATABASE = _descriptor.ServiceDescriptor(
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
   serialized_start=846,
-  serialized_end=1520,
+  serialized_end=1569,
   methods=[
   _descriptor.MethodDescriptor(
     name='CreateUser',
@@ -832,9 +832,19 @@ _DATABASE = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
+    name='RemoveDatasetByName',
+    full_name='Database.RemoveDatasetByName',
+    index=6,
+    containing_service=None,
+    input_type=_DATASET,
+    output_type=_DATASETRESP,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
     name='GetDatasetById',
     full_name='Database.GetDatasetById',
-    index=6,
+    index=7,
     containing_service=None,
     input_type=_DATASET,
     output_type=_DATASETRESP,
@@ -844,7 +854,7 @@ _DATABASE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetAllMetadataID',
     full_name='Database.GetAllMetadataID',
-    index=7,
+    index=8,
     containing_service=None,
     input_type=_DATABASEEMPTY,
     output_type=_METADATARESPONSE,
@@ -854,7 +864,7 @@ _DATABASE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetDatasetOwner',
     full_name='Database.GetDatasetOwner',
-    index=8,
+    index=9,
     containing_service=None,
     input_type=_DATASET,
     output_type=_USERRESPONSE,
@@ -864,7 +874,7 @@ _DATABASE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='CreateAPI',
     full_name='Database.CreateAPI',
-    index=9,
+    index=10,
     containing_service=None,
     input_type=_API,
     output_type=_APIRESP,
@@ -874,7 +884,7 @@ _DATABASE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetAllAPIs',
     full_name='Database.GetAllAPIs',
-    index=10,
+    index=11,
     containing_service=None,
     input_type=_DBEMPTY,
     output_type=_GETAPIRESP,
@@ -884,7 +894,7 @@ _DATABASE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='CreateAPIDependency',
     full_name='Database.CreateAPIDependency',
-    index=11,
+    index=12,
     containing_service=None,
     input_type=_APIDEPENDENCY,
     output_type=_APIDEPENDENCYRESP,
@@ -894,7 +904,7 @@ _DATABASE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetAllDependencies',
     full_name='Database.GetAllDependencies',
-    index=12,
+    index=13,
     containing_service=None,
     input_type=_DBEMPTY,
     output_type=_APIDEPENDENCYRESP,
@@ -904,7 +914,7 @@ _DATABASE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='CreatePolicy',
     full_name='Database.CreatePolicy',
-    index=13,
+    index=14,
     containing_service=None,
     input_type=_POLICY,
     output_type=_POLICYRESP,
@@ -914,7 +924,7 @@ _DATABASE = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='GetAllPolicies',
     full_name='Database.GetAllPolicies',
-    index=14,
+    index=15,
     containing_service=None,
     input_type=_DBEMPTY,
     output_type=_POLICYRESP,
