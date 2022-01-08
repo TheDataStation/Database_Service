@@ -7,9 +7,9 @@ from models.user import User
 from schemas.dataset import DatasetCreate
 
 
-def get_datasets(db: Session, limit: int = 100):
-    return db.query(Dataset).limit(limit).all()
-
+def get_datasets(db: Session):
+    all_data = db.query(Dataset).all()
+    return [data.to_pb_dataset() for data in all_data]
 
 def get_dataset_by_id(db: Session, dataset_id: int):
     dataset = db.query(Dataset).filter(Dataset.id == dataset_id).first()

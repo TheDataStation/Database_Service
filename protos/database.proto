@@ -9,6 +9,7 @@ service Database {
   rpc CreateDataset(Dataset) returns (DatasetResp) {}
   rpc GetDatasetByName(Dataset) returns (DatasetResp) {}
   rpc RemoveDatasetByName(Dataset) returns (DatasetResp) {}
+  rpc GetAllDatasets(DBEmpty) returns (DatasetResp) {}
   rpc GetDatasetById(Dataset) returns (DatasetResp) {}
   rpc GetAllMetadataID(DatabaseEmpty) returns (MetadataResponse) {}
   rpc GetDatasetOwner(Dataset) returns (UserResponse) {}
