@@ -1,6 +1,6 @@
 import database_pb2_grpc
 from database import SessionLocal, engine, Base
-from crud import user_repo, dataset_repo, api_repo, api_dependency_repo, policy_repo
+from crud import user_repo, dataset_repo, api_repo, api_dependency_repo, policy_repo, derived_repo
 import grpc
 from concurrent import futures
 import logging
@@ -128,6 +128,14 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
             return database_pb2.PolicyResp(status=1, msg="success", data=[policy])
         else:
             return database_pb2.PolicyResp(status=-1, msg="fail", data=[])
+
+    # Registering a new derived data product
+    def CreateDerived(self, request, context):
+        derived = derived_repo.create_derived(self.db, request)
+        if derived:
+            return database_pb2.DerivedResp(status=1, msg="success", data=[derived])
+        else:
+            return database_pb2.DerivedResp(status=-1, msg="fail", data=[])
 
     # Get all APIs
     def GetAllAPIs(self, request, context):
