@@ -1,6 +1,6 @@
 import database_pb2_grpc
 from database import SessionLocal, engine, Base
-from crud import user_repo, dataset_repo, api_repo, api_dependency_repo, policy_repo, derived_repo
+from crud import user_repo, dataset_repo, api_repo, api_dependency_repo, policy_repo, derived_repo, provenance_repo
 import grpc
 from concurrent import futures
 import logging
@@ -136,6 +136,14 @@ class DatabaseServicer(database_pb2_grpc.DatabaseServicer):
             return database_pb2.DerivedResp(status=1, msg="success", data=[derived])
         else:
             return database_pb2.DerivedResp(status=-1, msg="fail", data=[])
+
+    # Regisering a new pronvenance relation (from child derived data to parent data)
+    def CreateProvenance(self, request, context):
+        provenance = provenance_repo.create_provenance(self.db, request)
+        if provenance:
+            return database_pb2.ProvenanceResp(status=1, msg="success", data=[provenance])
+        else:
+            return database_pb2.ProvenanceResp(status=-1, msg="fail", data=[])
 
     # Get all APIs
     def GetAllAPIs(self, request, context):
